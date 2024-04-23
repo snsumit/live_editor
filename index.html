@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Editor</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<style>
+  body{
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  
+  
+  }
+  textarea{
+    background-color: #1d1e22;
+    height: 200px;
+    width: 500px;
+    resize: none;
+    font-size: 20px;
+
+    color:white;
+    position: relative;
+  }
+  .text-container{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    padding-left: 50px;
+    padding-top: 20px;
+  }
+  .wrapper{
+    display: flex;
+    gap: 50px;
+  }
+  .output{
+  
+    background-color: white;
+    height: 80vh;
+    width: 57vw;
+  }
+  .preview-container{
+      padding-top: 30px;
+  }
+  label{
+    color: white;
+    
+  }
+  small{
+    color: white;
+    font-size: 20px;
+  }
+  i{
+    position: relative;
+    top: 5px;
+
+  }
+    
+</style>
+<body>
+      <div class="wrapper">
+                <div class="text-container">
+                        <label for="HTMl"><i class='bx bxl-html5' style='color:#efa550; font-size:25px '></i>&nbsp;HTML</label>
+                        <textarea name="HTMl" onkeyup="appendInput()" id="html-text" cols="30" rows="10" >
+ 
+                        </textarea>
+                        <label for="CSS"><i class='bx bxl-css3' style='color:#4174f0;font-size: 25px; '  ></i>&nbsp;CSS</label>
+                        <textarea name="CSS" id="css-text" onkeyup="appendInput()" cols="30" rows="10">
+         
+                         </textarea>
+                        <label for="javascript"><i class='bx bxl-javascript' style='color:#f0f041;font-size: 25px;'  ></i>&nbsp;Javascript</label>
+                        <textarea name="javascript" id="javascript-text" onchange="appendInput()" cols="30" rows="10"></textarea>
+                </div>
+                <div class="preview-container">
+                       <small><i class='bx bx-play' style='color:#fff; font-size: 25px;' ></i>&nbsp;Output</small>
+                       <iframe class="output"></iframe>    
+                </div>
+      </div>
+      <script>
+           function appendInput(){
+            let htmlCode = document.getElementById('html-text').value
+            
+            let output= document.querySelector('.output')
+            let cssCode = document.getElementById('css-text').value
+            let javascriptCode = document.getElementById('javascript-text').value
+ 
+            output.contentDocument.body.innerHTML = htmlCode;
+            output.contentDocument.head.innerHTML = `<style> ${cssCode} </style> `
+            output.contentWindow.eval(javascriptCode);
+            
+
+           }
+         
+
+
+      </script>
+</body>
+
+</html>
